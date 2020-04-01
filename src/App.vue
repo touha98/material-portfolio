@@ -5,6 +5,9 @@
       <Home @goto="goTo" id="home" />
       <About id="about" />
       <portfolio id="portfolio" />
+      <blog id="blog" />
+      <contact id="contact" />
+      <footer-section />
     </v-content>
   </v-app>
 </template>
@@ -15,9 +18,20 @@ import NavigationBar from "./components/Navigation.vue";
 import Home from "./sections/Home.vue";
 import About from "./sections/About.vue";
 import Portfolio from "./sections/Portfolio.vue";
+import Blog from "./sections/Blog.vue";
+import Contact from "./sections/Contact.vue";
+import FooterSection from "./components/Footer.vue";
 export default Vue.extend({
   name: "App",
-  components: { NavigationBar, Home, About, Portfolio },
+  components: {
+    NavigationBar,
+    Home,
+    About,
+    Portfolio,
+    Blog,
+    Contact,
+    FooterSection
+  },
 
   methods: {
     goTo: function(id: string) {
@@ -30,6 +44,10 @@ export default Vue.extend({
     intersected: function(entries: [any], observer: object) {
       console.log(entries[0].intersectionRatio, observer);
     }
+  },
+  created() {
+    this.$store.dispatch("getData");
+    console.log(this.$store.getters);
   }
 });
 </script>

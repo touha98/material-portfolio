@@ -19,12 +19,12 @@
         </v-row>
         <v-row>
           <v-col cols="12" sm="5">
-            <v-card tile class="full-width fill-height pt-6 pr-6 pl-6">
+            <v-card tile class="full-width fill-height">
               <v-card-title class="justify-center font-weight-bold"
                 >About me</v-card-title
               >
-              <v-card-text class="text-center font-weight-regular">
-                {{ aboutme }}
+              <v-card-text class="font-weight-regular text-justify">
+                {{ personal.aboutme }}
               </v-card-text>
             </v-card>
           </v-col>
@@ -37,19 +37,19 @@
                 Skills
               </v-card-title>
               <v-card-text class="font-weight-bold">
-                <template v-for="(sector, key, i) in skills">
+                <template v-for="(sector, i) in skills">
                   <p
                     :key="i"
                     class="title mb-0"
                     style="font-family: 'Comfortaa', cursive !important;"
                   >
-                    {{ key }}
+                    {{ sector.field }}
                   </p>
                   <v-sheet :key="-i - 1" class="mb-4">
                     <v-chip
                       label
                       class="ma-1"
-                      v-for="(skill, j) in sector"
+                      v-for="(skill, j) in sector.items"
                       :key="`${i}${j}`"
                     >
                       <v-icon
@@ -80,6 +80,7 @@
 import Vue from "vue";
 import FeaturesCard from "../components/FeaturesCard.vue";
 import firebase from "../firebaseConfig";
+import { mapGetters } from "vuex";
 
 const db = firebase.firestore();
 export default Vue.extend({
@@ -88,14 +89,11 @@ export default Vue.extend({
   props: {
     id: String
   },
-  data: () => ({
-    aboutme: "",
-    features: [],
-    skills: {}
-  }),
-
-  created() {
- 
-  }
+  data: () => ({}),
+  computed: {
+    ...mapGetters(["personal", "features", "skills"])
+  },
+  watch: {},
+  created() {}
 });
 </script>

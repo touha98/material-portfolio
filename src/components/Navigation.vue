@@ -3,6 +3,7 @@
     class="header"
     :elevation="drawer ? 0 : 3"
     dark
+    style="z-index:2;"
     inverted-scroll
     dense
     app

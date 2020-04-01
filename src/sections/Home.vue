@@ -5,13 +5,9 @@
     :class="['pa-0', 'mb-0', 'homapageContainer']"
     fluid
   >
-    <template v-if="false">
-      <div id="stars"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-    </template>
     <v-row justify="center" align-content="center" class="fill-height">
       <v-card
+        width="100%"
         transition="fade-transition"
         elevation="0"
         class="transparent text-center"
@@ -20,15 +16,13 @@
           style="font-family: 'Comfortaa', cursive !important;"
           :class="[isMobile ? 'headline' : 'display-2', 'dark--text']"
         >
-          Hi, my name is touha.
+          {{ personal.title }}
         </h1>
         <h1
+          id="subTitle"
           style="font-family: 'Comfortaa', cursive !important;"
-          :class="[isMobile ? 'title' : 'display-1', 'dark--text']"
-        >
-          I am a <br v-if="isMobile" />
-          <span class="secondary--text"> full-stack web developer</span>.
-        </h1>
+          :class="[isMobile ? 'subtitle-1' : 'display-1', 'dark--text']"
+        ></h1>
         <v-img
           v-if="isMobile"
           class="mx-auto my-4 ProfileImg"
@@ -36,14 +30,14 @@
           height="150"
           style="border-radius:50%;"
           aspect-ratio="1"
-          :src="url"
+          :src="personal.photoURL"
         ></v-img>
         <div v-else class="imagePlaceholder">
           <v-img
-            :class="['mx-auto', loaded ? 'ProfileImg' : '']"
+            :class="['mx-auto', 'ProfileImg']"
             width="197"
             height="197"
-            :src="url"
+            :src="personal.photoURL"
           ></v-img>
         </div>
       </v-card>
@@ -54,6 +48,7 @@
 <script lang="ts">
 import Vue from "vue";
 import firebase from "../firebaseConfig";
+import { mapGetters } from "vuex";
 
 const db = firebase.firestore();
 export default Vue.extend({
@@ -62,21 +57,32 @@ export default Vue.extend({
     id: String
   },
   data: () => ({
-    loaded: false,
-    url: String
+    loaded: false
   }),
   computed: {
-    isMobile: function() {
-      this as any;
-      return (this as any).$vuetify.breakpoint.xsOnly;
+    ...mapGetters(["personal"]),
+    isMobile: function(): boolean {
+      return this.$vuetify.breakpoint.xsOnly;
     }
   },
-  created() {}
+  methods: {
+    setHTML: function(val: string) {
+      const el = document.getElementById("subTitle");
+      if (val && el) el.innerHTML = val;
+    }
+  },
+  watch: {
+    personal: function(val) {
+      this.setHTML(val.subtitle);
+    }
+  },
+  mounted() {
+    this.setHTML(this.personal.subtitle);
+  }
 });
 </script>
 
 <style scoped>
-@import url("../assets/parallex_pixels.css");
 .mainButton {
   border-width: 2px !important;
 }
@@ -90,7 +96,6 @@ export default Vue.extend({
   background-position-x: center;
   height: 450px;
   padding: 130px 0;
-  width: auto;
 }
 .ProfileImg {
   background: #fff !important;

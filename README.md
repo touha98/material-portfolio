@@ -1,4 +1,4 @@
-# touhazr
+# material-portfolio
 
 ## Project setup
 ```
