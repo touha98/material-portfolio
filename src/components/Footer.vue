@@ -17,7 +17,8 @@
       <v-divider></v-divider>
       <v-card-text class="dark--text text-center">
         <p class="text-center">
-          View source code on <a href="http://www.mynameismosh.com/">GitHub</a>.
+          View source code on
+          <a href="https://github.com/touha98/material-portfolio">GitHub</a>.
         </p>
         design inspiration came from the portfolio of
         <a href="http://findmatthew.com/">Matthew Williams</a> and
