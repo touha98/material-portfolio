@@ -8,10 +8,7 @@
     dense
     app
   >
-    <v-app-bar-nav-icon
-      v-if="isMobile"
-      @click="drawer = !drawer"
-    ></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon v-if="isMobile" @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-expand-transition>
       <v-list
         class="mobileMenu py-0 header"
@@ -27,10 +24,7 @@
           :key="i"
           @click="goTo(item.route)"
         >
-          <v-list-item-title
-            class="dark--text"
-            v-text="item.title"
-          ></v-list-item-title>
+          <v-list-item-title class="dark--text" v-text="item.title"></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-expand-transition>
@@ -41,8 +35,7 @@
         @click="goTo(item.route)"
         v-for="(item, i) in menuItems"
         :key="i"
-        >{{ item.title }}</v-btn
-      >
+      >{{ item.title }}</v-btn>
     </v-toolbar-items>
   </v-app-bar>
 </template>
@@ -56,8 +49,8 @@ export default Vue.extend({
     menuItems: [
       { title: "Home", route: "#home" },
       { title: "About", route: "#about" },
+      { title: "Features", route: "#features" },
       { title: "Portfolio", route: "#portfolio" },
-      { title: "Blog", route: "#blog" },
       { title: "Contact", route: "#contact" }
     ]
   }),

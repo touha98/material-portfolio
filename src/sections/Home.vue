@@ -1,43 +1,38 @@
 <template>
-  <v-container
-    :id="id"
-    style="height: 100vh"
-    :class="['pa-0', 'mb-0', 'homapageContainer']"
-    fluid
-  >
+  <v-container :id="id" style="height: 100vh" :class="['pa-0', 'mb-0', 'homapageContainer']" fluid>
     <v-row justify="center" align-content="center" class="fill-height">
-      <v-card
-        width="100%"
-        transition="fade-transition"
-        elevation="0"
-        class="transparent text-center"
-      >
-        <h1
-          style="font-family: 'Comfortaa', cursive !important;"
-          :class="[isMobile ? 'headline' : 'display-2', 'dark--text']"
+      <v-card width="100%" elevation="0" class="transparent text-center">
+        <transition name="scroll-y-transition">
+          <h1
+            v-if="loaded"
+            style="font-family: 'Comfortaa', cursive !important;"
+            :class="[isMobile ? 'headline' : 'display-2', 'headlines', ]"
+          >Hi, my name is touha.</h1>
+        </transition>
+        <transition name="scroll-y-reverse-transition">
+          <h1
+            v-if="loaded"
+            id="subTitle"
+            style="font-family: 'Comfortaa', cursive !important;"
+            :class="[isMobile ? 'subtitle-1' : 'display-1', 'dark--text']"
+          >
+            I am a
+            <span class="secondary--text">full-stack web developer</span>.
+          </h1>
+        </transition>
+        <div
+          v-if="loaded"
+          :class="['imagePlaceholder', isMobile?'py-10':'includeBG']"
+          :style="{
+              height: isMobile?'200px':'450px'
+            }"
         >
-          {{ personal.title }}
-        </h1>
-        <h1
-          id="subTitle"
-          style="font-family: 'Comfortaa', cursive !important;"
-          :class="[isMobile ? 'subtitle-1' : 'display-1', 'dark--text']"
-        ></h1>
-        <v-img
-          v-if="isMobile"
-          class="mx-auto my-4 ProfileImg"
-          width="150"
-          height="150"
-          style="border-radius:50%;"
-          aspect-ratio="1"
-          :src="personal.photoURL"
-        ></v-img>
-        <div v-else class="imagePlaceholder">
           <v-img
-            :class="['mx-auto', 'ProfileImg']"
-            width="197"
-            height="197"
-            :src="personal.photoURL"
+            :class="['mx-auto','ProfileImg']"
+            aspect-ratio="1"
+            :max-width="isMobile?'150px':'180px'"
+            lazy-src="@/assets/images/profile-2.jpg"
+            src="@/assets/images/profile-2.jpg"
           ></v-img>
         </div>
       </v-card>
@@ -47,7 +42,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import firebase from "../firebaseConfig";
+import profile from "@/assets/profile";
+import firebase from "@/firebaseConfig";
 import { mapGetters } from "vuex";
 
 const db = firebase.firestore();
@@ -57,12 +53,15 @@ export default Vue.extend({
     id: String
   },
   data: () => ({
-    loaded: false
+    loaded: 0
   }),
   computed: {
     ...mapGetters(["personal"]),
     isMobile: function(): boolean {
       return this.$vuetify.breakpoint.xsOnly;
+    },
+    profileURI: function(): string {
+      return profile;
     }
   },
   methods: {
@@ -77,7 +76,10 @@ export default Vue.extend({
     }
   },
   mounted() {
-    this.setHTML(this.personal.subtitle);
+    this.loaded++;
+    setTimeout(() => {
+      this.loaded++;
+    }, 500);
   }
 });
 </script>
@@ -91,15 +93,15 @@ export default Vue.extend({
   overflow: hidden !important;
 }
 .imagePlaceholder {
+  padding: 145px 0;
+}
+.includeBG {
   background: url("../assets/images/img-bg2.png");
   background-repeat: no-repeat;
   background-position-x: center;
-  height: 450px;
-  padding: 130px 0;
 }
 .ProfileImg {
-  background: #fff !important;
-  border: 3px solid #fff !important;
+  border: 4px solid #e1e1e1;
   border-radius: 50%;
 }
 </style>
