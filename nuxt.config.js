@@ -4,12 +4,17 @@ export default {
   target: "static",
 
   head: {
-    titleTemplate: "%s - touha-zohair",
-    title: "touha-zohair",
+    titleTemplate: "%s - Touha Zohair",
+    title: "Touha Zohair",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "I am a Full-stack developer. I build awesome user Experience for you",
+      },
     ],
     link: [
       { rel: "icon", href: "/favicon.ico" },

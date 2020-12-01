@@ -37,6 +37,16 @@ export default {
       return this.$vuetify.breakpoint.xsOnly
     },
   },
+  head: {
+    title: "About Me",
+    meta: [
+      {
+        hid: "image",
+        property: "og:image",
+        content: "/avatar.jpg",
+      },
+    ],
+  },
 }
 </script>
 <style>
