@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <v-fade-transition>
-      <div v-show="loading" class="loading"></div>
+      <loading-screen v-show="loading" />
     </v-fade-transition>
     <v-app-bar clipped-left clipped-right dense app color="transparent" flat>
       <v-toolbar-title class="text-uppercase">
@@ -77,18 +77,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.loading = false
-    }, 1000)
+    }, 1800)
   },
 }
 </script>
-<style>
-.loading {
-  z-index: 999;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-}
-</style>
