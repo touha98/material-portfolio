@@ -1,11 +1,14 @@
 <template>
   <v-app light>
-    <v-app-bar dense app color="transparent" flat>
+    <v-fade-transition>
+      <div v-show="loading" class="loading"></div>
+    </v-fade-transition>
+    <v-app-bar clipped-left clipped-right dense app color="transparent" flat>
       <v-toolbar-title class="text-uppercase">
         {{ $store.getters.firstname }} {{ $store.getters.lastname }}
       </v-toolbar-title>
       <v-spacer />
-      <v-btn class="text-none" href="mailto:" text>
+      <v-btn class="text-none" :href="'mailto:' + $store.getters.email" text>
         {{ $store.getters.email }}
       </v-btn>
     </v-app-bar>
@@ -25,6 +28,21 @@
       </v-container>
     </v-main>
     <v-navigation-drawer app mini-variant right clipped color="grey lighten-4">
+      <div class="full-width fill-height d-flex justify-center flex-column">
+        <v-list>
+          <v-list-item
+            v-for="{ icon, name, link } in $store.getters.social"
+            :key="name"
+            :class="['px-2']"
+            :href="link"
+          >
+            <v-list-item-avatar>
+              <v-icon> {{ icon }} </v-icon>
+            </v-list-item-avatar>
+            <v-list-item-title> {{ name }} </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </div>
     </v-navigation-drawer>
     <v-footer app>
       <v-btn class="ml-6 text-none" text>
@@ -45,6 +63,7 @@ export default {
   data() {
     return {
       right: null,
+      loading: false,
     }
   },
   computed: {
@@ -52,5 +71,24 @@ export default {
       return this.$vuetify.breakpoint.smAndDown
     },
   },
+  created() {
+    this.loading = true
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
+  },
 }
 </script>
+<style>
+.loading {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+}
+</style>

@@ -4,7 +4,29 @@ export default {
     lastname: "Zohair",
     email: "contact@touha.org",
     designation: "full-stack web developer",
-    aboutme: `I love to build awesome user experience. With the power of Vuejs, I build- dynamic, highly interactive, scalable and super fast web applications for you. I use Nodejs or python as backend technology both of which are reputed for performance and security. I write clean code so that anyone can understand what's going on. I aim to keep things simple during development because- "Simplicity is the ultimate sophistication."`,
+    aboutme: `I love to build awesome user experience. With the power of JavaScript, I build- dynamic, highly interactive, scalable and super fast web applications for you. I aim to keep things simple during development because- \n"Simplicity is the ultimate sophestication"`,
+    social: [
+      {
+        name: "twitter",
+        icon: "mdi-twitter",
+        link: "https://twitter.com/touha98",
+      },
+      {
+        name: "github",
+        icon: "mdi-github",
+        link: "https://github.com/touha98",
+      },
+      {
+        name: "linkedin",
+        icon: "mdi-linkedin",
+        link: "https://www.linkedin.com/in/touhazr",
+      },
+      {
+        name: "skype",
+        icon: "mdi-skype",
+        link: "https://join.skype.com/invite/Y6Rl0TeuPLPu",
+      },
+    ],
   }),
   getters: {
     firstname: ({ firstname }) => firstname,
@@ -12,5 +34,6 @@ export default {
     email: ({ email }) => email,
     designation: ({ designation }) => designation,
     aboutme: ({ aboutme }) => aboutme,
+    social: ({ social }) => social,
   },
 }
