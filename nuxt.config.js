@@ -1,10 +1,8 @@
 import colors from "vuetify/es5/util/colors"
 
 export default {
-  // Target (https://go.nuxtjs.dev/config-target)
   target: "static",
 
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: "%s - touha-zohair",
     title: "touha-zohair",
@@ -19,24 +17,14 @@ export default {
     ],
   },
 
-  // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [],
 
-  // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [],
 
-  // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-  buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    "@nuxtjs/eslint-module",
-    // https://go.nuxtjs.dev/vuetify
-    "@nuxtjs/vuetify",
-  ],
+  buildModules: ["@nuxtjs/eslint-module", "@nuxtjs/vuetify"],
 
-  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: ["nuxt-webfontloader"],
   webfontloader: {
     google: {
@@ -67,6 +55,19 @@ export default {
     },
   },
 
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: "styles",
+            test: /\.(css|vue)$/,
+            chunks: "all",
+            enforce: true,
+          },
+        },
+      },
+    },
+  },
 }
