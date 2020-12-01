@@ -11,7 +11,7 @@ export default {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         hid: "description",
-        name: "description",
+        property: "og:description",
         content:
           "I am a Full-stack developer. I build awesome user Experience for you",
       },
