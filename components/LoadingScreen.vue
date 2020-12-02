@@ -22,13 +22,14 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: #f5f5f5;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .icons-wrapper {
+  font-size: 40px;
   display: block;
   max-width: 340px;
   text-align: center;

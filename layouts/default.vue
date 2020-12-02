@@ -1,6 +1,7 @@
 <template>
   <v-app light>
     <v-fade-transition>
+      <!-- <loading-screen /> -->
       <loading-screen v-show="loading" />
     </v-fade-transition>
     <v-app-bar clipped-left clipped-right dense app color="transparent" flat>
