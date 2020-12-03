@@ -191,7 +191,6 @@ export default {
       this.loading = false
     }, 1300)
   },
-  methods: {},
 }
 </script>
 <style>

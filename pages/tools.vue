@@ -1,9 +1,9 @@
 <template>
-  <v-container> </v-container>
+  <v-container>tools page</v-container>
 </template>
 
 <script>
-export default {}
+export default {
+  name: "Tools",
+}
 </script>
-
-<style></style>
