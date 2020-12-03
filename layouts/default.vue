@@ -1,11 +1,35 @@
 <template>
   <v-app light>
     <v-fade-transition>
+      <v-overlay v-show="expanded" :z-index="10">
+        <div
+          style="width: 100vh; height: 100vh"
+          @click="expanded = false"
+        ></div>
+      </v-overlay>
+    </v-fade-transition>
+    <v-fade-transition>
       <!-- <loading-screen /> -->
       <loading-screen v-show="loading" />
     </v-fade-transition>
-    <v-app-bar clipped-right clipped-left dense app color="grey lighten-4" flat>
-      <v-app-bar-nav-icon v-show="!isMobile" @click="mini = !mini" />
+    <v-app-bar
+      :hide-on-scroll="isMobile"
+      clipped-right
+      clipped-left
+      dense
+      app
+      color="grey lighten-4"
+      flat
+    >
+      <v-btn
+        v-show="!isMobile"
+        :class="[mini ? '' : 'opened']"
+        icon
+        @click="mini = !mini"
+      >
+        <burger-menu-svg />
+      </v-btn>
+
       <v-toolbar-title class="text-uppercase pl-0">
         {{ $store.getters.firstname }} {{ $store.getters.lastname }}
       </v-toolbar-title>
@@ -32,8 +56,7 @@
       v-show="!isMobile"
       v-model="left"
       clipped
-      :permanent="$vuetify.breakpoint.mdAndUp"
-      fixed
+      :permanent="!$vuetify.breakpoint.mdAndDown"
       class="grey lighten-4"
       :mini-variant="mini"
       app
@@ -56,13 +79,39 @@
         </v-list>
       </div>
     </v-navigation-drawer>
+
     <v-main
       class="grey lighten-4"
-      :class="[loading ? 'hide_loading_overflow' : '']"
+      :class="[loading ? 'hide-loading-overflow' : '']"
     >
       <v-container fluid class="fill-height">
+        <div
+          :class="[expanded ? 'expanded' : '']"
+          class="mobile-menu elevation-2 white"
+        >
+          <v-list class="mx-auto mobile-menu-list-wrapper">
+            <v-list-item
+              v-for="route in routes"
+              :key="route.name"
+              :to="route.path"
+              @click="expanded = false"
+            >
+              <v-list-item-title class="text-center">
+                {{ route.name }}
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </div>
         <nuxt />
       </v-container>
+      <button
+        v-show="isMobile"
+        class="menu-fab menu white"
+        :class="[expanded ? 'opened' : 'elevation-2']"
+        @click="expanded = !expanded"
+      >
+        <burger-menu-svg />
+      </button>
     </v-main>
 
     <v-navigation-drawer
@@ -103,6 +152,7 @@ export default {
       left: null,
       mini: true,
       loading: false,
+      expanded: false,
       transition: "slide-y-transition",
       routes: [
         {
@@ -114,6 +164,11 @@ export default {
           name: "My Portfolio",
           icon: "mdi-briefcase-outline",
           path: "/portfolio",
+        },
+        {
+          name: "Tools I Use",
+          icon: "mdi-hammer-screwdriver",
+          path: "/tools",
         },
         {
           name: "Find Me",
@@ -130,40 +185,58 @@ export default {
   },
   created() {
     this.loading = true
-    this.$nuxt.$on("push", this.pushRoute)
   },
   mounted() {
     setTimeout(() => {
       this.loading = false
     }, 1300)
   },
-  methods: {
-    pushRoute(target) {
-      const from = this.$nuxt.$route.path
-      if (target === "/") {
-        this.transition = "slide-y-reverse-transition"
-      } else {
-        const fromIndex = this.routes.findIndex(({ path }) => path === from)
-        const targetIndex = this.routes.findIndex(({ path }) => path === target)
-        if (fromIndex > targetIndex) {
-          this.transition = "slide-y-reverse-transition"
-        } else {
-          this.transition = "slide-y-transition"
-        }
-      }
-      setTimeout(() => {
-        this.$router.push(target)
-      }, 100)
-    },
-  },
+  methods: {},
 }
 </script>
 <style>
 .v-navigation-drawer__border {
   display: none !important;
 }
-.hide_loading_overflow {
+.menu-fab {
+  height: 60px;
+  width: 60px;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 50% 0 0 0;
+  z-index: 80;
+  transition: 0.5s all ease-in-out;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.hide-loading-overflow {
   max-height: 100vh;
   overflow: hidden;
+}
+.mobile-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 79;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  clip-path: circle(24px at 105% 105%);
+  transition: 0.5s all ease-in-out;
+}
+.mobile-menu.expanded {
+  clip-path: circle(450px at 60% 80%);
+}
+.mobile-menu-list-wrapper {
+  max-width: 350px;
+  width: 100%;
 }
 </style>
