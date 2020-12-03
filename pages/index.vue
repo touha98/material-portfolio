@@ -11,16 +11,20 @@
         <h1 class="lastname">{{ $store.getters.lastname }}.</h1>
       </v-col>
       <v-col class="page-conent" cols="12" md="6">
-        <v-scroll-y-reverse-transition>
-          <span class="d-inline-block black px-3">
-            <h1 class="white--text">
-              {{ $store.getters.designation }}
-            </h1>
+        <span class="d-inline-block black px-3">
+          <h1 class="white--text">
+            {{ $store.getters.designation }}
+          </h1>
+        </span>
+        <p>{{ $store.getters.aboutme }}</p>
+      </v-col>
+      <v-col cols="12" class="text-center">
+        <v-btn elevation="0" large class="text-center">
+          <span class="d-block">
+            <v-icon class="bounce">mdi-arrow-down</v-icon>
+            <span class="d-block"> view works </span>
           </span>
-        </v-scroll-y-reverse-transition>
-        <v-scroll-y-reverse-transition>
-          <p>{{ $store.getters.aboutme }}</p>
-        </v-scroll-y-reverse-transition>
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -29,14 +33,18 @@
 <script>
 export default {
   name: "Homepage",
-  data: () => ({
-    //
-  }),
+  transition: {
+    name: "scroll-y-reverse-transition",
+    mode: "out-in",
+  },
+  data: () => ({}),
+
   computed: {
     isMobile() {
       return this.$vuetify.breakpoint.xsOnly
     },
   },
+
   head: {
     title: "About Me",
     meta: [
@@ -49,6 +57,7 @@ export default {
   },
 }
 </script>
+
 <style>
 .page-heading {
   text-align: left;
@@ -70,5 +79,30 @@ export default {
 .page-conent p {
   margin-top: 1rem;
   font-size: 1.15rem;
+}
+.call-to-action {
+  font-family: "Satisfy", cursive !important;
+  font-size: 24px !important;
+}
+.bounce {
+  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 </style>

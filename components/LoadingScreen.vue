@@ -1,5 +1,5 @@
 <template>
-  <div class="loading">
+  <div class="loading white">
     <div class="icons-wrapper">
       <loading />
     </div>
@@ -22,7 +22,6 @@ export default {
   height: 100vh;
   left: 0;
   right: 0;
-  background: #f5f5f5;
   text-align: center;
   display: flex;
   align-items: center;
