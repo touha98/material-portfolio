@@ -53,12 +53,16 @@ export default {
 
 .markdown-grid-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   max-width: 900px;
   margin: auto;
+  .markdown-grid-item {
+    max-width: 100%;
+  }
   img {
-    max-width: 350px;
     display: block;
+    width: 100%;
+    max-width: 350px;
     margin: 5px auto;
   }
 }

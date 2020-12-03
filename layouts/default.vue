@@ -56,7 +56,10 @@
         </v-list>
       </div>
     </v-navigation-drawer>
-    <v-main class="grey lighten-4">
+    <v-main
+      class="grey lighten-4"
+      :class="[loading ? 'hide_loading_overflow' : '']"
+    >
       <v-container fluid class="fill-height">
         <nuxt />
       </v-container>
@@ -158,5 +161,9 @@ export default {
 <style>
 .v-navigation-drawer__border {
   display: none !important;
+}
+.hide_loading_overflow {
+  max-height: 100vh;
+  overflow: hidden;
 }
 </style>
