@@ -30,7 +30,7 @@ export default {
 
   buildModules: ["@nuxtjs/eslint-module", "@nuxtjs/vuetify"],
 
-  modules: ["nuxt-webfontloader"],
+  modules: ["nuxt-webfontloader", "@nuxt/content"],
   webfontloader: {
     google: {
       families: [

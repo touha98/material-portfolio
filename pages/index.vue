@@ -19,7 +19,7 @@
         <p>{{ $store.getters.aboutme }}</p>
       </v-col>
       <v-col cols="12" class="text-center">
-        <v-btn elevation="0" large class="text-center">
+        <v-btn nuxt to="/portfolio" elevation="0" large class="text-center">
           <span class="d-block">
             <v-icon class="bounce">mdi-arrow-down</v-icon>
             <span class="d-block"> view works </span>

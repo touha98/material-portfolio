@@ -4,7 +4,7 @@
       <!-- <loading-screen /> -->
       <loading-screen v-show="loading" />
     </v-fade-transition>
-    <v-app-bar clipped-right clipped-left dense app color="transparent" flat>
+    <v-app-bar clipped-right clipped-left dense app color="grey lighten-4" flat>
       <v-app-bar-nav-icon v-show="!isMobile" @click="mini = !mini" />
       <v-toolbar-title class="text-uppercase pl-0">
         {{ $store.getters.firstname }} {{ $store.getters.lastname }}
