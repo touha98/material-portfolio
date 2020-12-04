@@ -89,18 +89,20 @@
           :class="[expanded ? 'expanded' : '']"
           class="mobile-menu elevation-2 white"
         >
-          <v-list class="mx-auto mobile-menu-list-wrapper">
-            <v-list-item
-              v-for="route in routes"
-              :key="route.name"
-              :to="route.path"
-              @click="expanded = false"
-            >
-              <v-list-item-title class="text-center">
-                {{ route.name }}
-              </v-list-item-title>
-            </v-list-item>
-          </v-list>
+          <v-fade-transition>
+            <v-list v-show="expanded" class="mx-auto mobile-menu-list-wrapper">
+              <v-list-item
+                v-for="route in routes"
+                :key="route.name"
+                :to="route.path"
+                @click="expanded = false"
+              >
+                <v-list-item-title class="text-center">
+                  {{ route.name }}
+                </v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-fade-transition>
         </div>
         <nuxt />
       </v-container>
@@ -205,7 +207,8 @@ export default {
   right: 0px;
   border-radius: 50% 0 0 0;
   z-index: 80;
-  transition: 0.5s all ease-in-out;
+  transition: 0.3s box-shadow ease-in-out;
+  outline: none;
   border: none;
   cursor: pointer;
   display: flex;
@@ -213,29 +216,27 @@ export default {
   align-items: center;
   padding: 0;
 }
-.hide-loading-overflow {
-  max-height: 100vh;
-  overflow: hidden;
-}
 .mobile-menu {
   position: fixed;
   bottom: 0;
-  left: 0;
   right: 0;
-  height: 100vh;
-  z-index: 79;
+  height: 60px;
+  width: 60px;
+  border-radius: 30px 0 0 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  clip-path: circle(24px at 105% 105%);
-  transition: 0.5s all ease-in-out;
+  z-index: 77;
+  transition: 0.3s width ease-in-out, 0.3s height ease-in-out;
 }
 .mobile-menu.expanded {
-  clip-path: circle(450px at 60% 80%);
+  height: 300px;
+  width: 300px;
 }
 .mobile-menu-list-wrapper {
-  max-width: 350px;
   width: 100%;
+}
+.hide-loading-overflow {
+  max-height: 100vh;
+  overflow: hidden;
 }
 </style>
