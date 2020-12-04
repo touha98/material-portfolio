@@ -27,6 +27,23 @@ export default {
   data: () => ({
     project: {},
   }),
+  head() {
+    return {
+      title: this.project.title,
+      meta: [
+        {
+          hid: "description",
+          name: "og:description",
+          content: this.project.description,
+        },
+        {
+          hid: "image",
+          name: "og:image",
+          content: this.project.thumbnail,
+        },
+      ],
+    }
+  },
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <v-fade-transition>
-      <v-overlay v-show="expanded" :z-index="10">
+      <v-overlay v-if="expanded && isMobile" :z-index="10">
         <div
           style="width: 100vh; height: 100vh"
           @click="expanded = false"
