@@ -44,7 +44,7 @@
           <v-icon color="#1F1F1F" class="mr-md-1">mdi-email-outline</v-icon>
           <span v-show="!isMobile">{{ $store.getters.email }}</span>
         </v-btn>
-        <v-btn text class="text-none">
+        <v-btn text class="text-none" @click="dialog = true">
           <v-icon color="#1F1F1F" class="mr-md-1">
             mdi-message-text-outline
           </v-icon>
@@ -83,6 +83,46 @@
       class="grey lighten-4"
       :class="[loading ? 'hide-loading-overflow' : '']"
     >
+      <v-dialog v-model="dialog" max-width="450px">
+        <v-form @submit="submitMessage">
+          <v-card>
+            <v-card-title class="mb-2">
+              What's on your mind?
+              <v-spacer />
+              <v-btn icon @click="dialog = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-card-title>
+            <v-card-text>
+              <v-text-field
+                color="grey"
+                label="Your Email"
+                name="email"
+                class="mb-2"
+                outlined
+                rounded
+                hide-details
+                autofocus
+              ></v-text-field>
+              <v-textarea
+                label="Write your message"
+                color="grey"
+                name="message"
+                outlined
+                rounded
+                hide-details
+              ></v-textarea>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn type="submit" class="mb-4 px-5" outlined rounded large>
+                submit
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <input type="hidden" name="form-name" value="contact" />
+        </v-form>
+      </v-dialog>
+
       <v-container fluid class="fill-height">
         <div
           v-show="isMobile"
@@ -115,7 +155,19 @@
         <burger-menu-svg />
       </button>
     </v-main>
-
+    <v-snackbar v-model="snackbar">
+      Thanks for your message!
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="grey lighten-4"
+          icon
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
     <v-navigation-drawer
       v-show="!isMobile"
       :permanent="$vuetify.breakpoint.mdAndUp"
@@ -153,8 +205,10 @@ export default {
     return {
       left: true,
       mini: true,
+      snackbar: false,
       loading: false,
       expanded: false,
+      dialog: false,
       transition: "slide-y-transition",
       routes: [
         {
@@ -192,6 +246,23 @@ export default {
     setTimeout(() => {
       this.loading = false
     }, 1300)
+  },
+  methods: {
+    async submitMessage(e) {
+      try {
+        await e.preventDefault()
+        this.dialog = false
+        const formData = new FormData(e.target)
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        })
+        this.snackbar = true
+      } catch (error) {
+        alert(error.message)
+      }
+    },
   },
 }
 </script>
