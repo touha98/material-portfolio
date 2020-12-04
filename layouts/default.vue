@@ -90,7 +90,7 @@
           class="mobile-menu elevation-2 white"
         >
           <v-fade-transition>
-            <v-list v-show="expanded" class="mx-auto mobile-menu-list-wrapper">
+            <v-list v-if="expanded" class="mx-auto mobile-menu-list-wrapper">
               <v-list-item
                 v-for="route in routes"
                 :key="route.name"
@@ -220,17 +220,17 @@ export default {
   position: fixed;
   bottom: 0;
   right: 0;
-  height: 60px;
-  width: 60px;
+  height: 300px;
+  width: 250px;
   border-radius: 30px 0 0 0;
   display: flex;
   align-items: center;
   z-index: 77;
-  transition: 0.3s width ease, 0.3s height ease;
+  transform: translate(200px, 250px);
+  transition: 0.3s all ease;
 }
 .mobile-menu.expanded {
-  height: 300px;
-  width: 300px;
+  transform: translate(0px, 0px);
 }
 .mobile-menu-list-wrapper {
   width: 100%;
