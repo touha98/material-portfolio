@@ -207,7 +207,7 @@ export default {
   right: 0px;
   border-radius: 50% 0 0 0;
   z-index: 80;
-  transition: 0.3s box-shadow ease-in-out;
+  transition: 0.3s box-shadow ease;
   outline: none;
   border: none;
   cursor: pointer;
@@ -226,7 +226,7 @@ export default {
   display: flex;
   align-items: center;
   z-index: 77;
-  transition: 0.3s width ease-in-out, 0.3s height ease-in-out;
+  transition: 0.3s width ease, 0.3s height ease;
 }
 .mobile-menu.expanded {
   height: 300px;

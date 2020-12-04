@@ -4,7 +4,7 @@ export default {
     lastname: "Zohair",
     email: "contact@touha.org",
     designation: "full-stack web developer",
-    aboutme: `I love to build awesome user experience. With the power of JavaScript, I build- dynamic, highly interactive, scalable and super fast web applications for you. I aim to keep things simple during development because- \n"Simplicity is the ultimate sophestication"`,
+    aboutme: `I love to build awesome user experience. I build- dynamic, highly interactive, scalable and super fast web applications for you. I aim to keep things simple as - "Simplicity is the ultimate sophestication"`,
     social: [
       {
         name: "twitter",
