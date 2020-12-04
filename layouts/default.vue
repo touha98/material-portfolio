@@ -54,9 +54,8 @@
     </v-app-bar>
     <v-navigation-drawer
       v-show="!isMobile"
-      v-model="left"
       clipped
-      :permanent="!$vuetify.breakpoint.mdAndDown"
+      :permanent="$vuetify.breakpoint.mdAndUp"
       class="grey lighten-4"
       :mini-variant="mini"
       app
@@ -86,6 +85,7 @@
     >
       <v-container fluid class="fill-height">
         <div
+          v-show="isMobile"
           :class="[expanded ? 'expanded' : '']"
           class="mobile-menu elevation-2 white"
         >
@@ -151,7 +151,7 @@ export default {
 
   data() {
     return {
-      left: null,
+      left: true,
       mini: true,
       loading: false,
       expanded: false,
