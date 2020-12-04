@@ -84,7 +84,7 @@
       :class="[loading ? 'hide-loading-overflow' : '']"
     >
       <v-dialog v-model="dialog" max-width="450px">
-        <v-form @submit="submitMessage">
+        <v-form data-netlify="true" name="contact" @submit="submitMessage">
           <v-card>
             <v-card-title class="mb-2">
               What's on your mind?
