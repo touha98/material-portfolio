@@ -84,7 +84,7 @@
       :class="[loading ? 'hide-loading-overflow' : '']"
     >
       <v-dialog v-model="dialog" max-width="450px">
-        <v-form data-netlify="true" name="contact" @submit="submitMessage">
+        <form data-netlify="true" action="/thanks" name="contact" method="POST">
           <v-card>
             <v-card-title class="mb-2">
               What's on your mind?
@@ -120,7 +120,7 @@
             </v-card-actions>
           </v-card>
           <input type="hidden" name="form-name" value="contact" />
-        </v-form>
+        </form>
       </v-dialog>
 
       <v-container fluid class="fill-height">
