@@ -84,7 +84,14 @@
       :class="[loading ? 'hide-loading-overflow' : '']"
     >
       <v-dialog v-model="dialog" max-width="450px">
-        <form data-netlify="true" action="/thanks" name="contact" method="POST">
+        <form
+          data-netlify="true"
+          netlify
+          netlify-honeypot="bot-field"
+          action="/thanks"
+          name="contact"
+          method="POST"
+        >
           <v-card>
             <v-card-title class="mb-2">
               What's on your mind?
@@ -120,6 +127,7 @@
             </v-card-actions>
           </v-card>
           <input type="hidden" name="form-name" value="contact" />
+          <input name="bot-field" hidden />
         </form>
       </v-dialog>
 
