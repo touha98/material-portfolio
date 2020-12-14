@@ -27,6 +27,11 @@ export default {
         link: "https://join.skype.com/invite/Y6Rl0TeuPLPu",
       },
     ],
+    tools: [
+      {
+        name: "javascript",
+      },
+    ],
   }),
   getters: {
     firstname: ({ firstname }) => firstname,
