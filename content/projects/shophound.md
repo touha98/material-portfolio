@@ -1,26 +1,25 @@
 ---
-title: Gadget Era
-description: Gadget Era is an e-commerce website that uses JAMstack technology. I used strapi headless CMS as backend and Nuxt.js as frontend
-cover: /content/gadgetera-cover.jpg
-thumbnail: /content/gadgetera-home.png
-tools: Nuxt.js,Vuetify,Strapi CMS,Vue.js
-languages: JavaScript, Node.js
+title: ShopHound
+description: ShopHound is an e-commerce website that indexes all sorts of goods from many e-commerce websites and lets users to search them.
+cover: /content/shophound-home.png
+thumbnail: /content/shophound-home.png
+tools: Nuxt.js,Vuetify
+languages: JavaScript
 ---
 
-## Gadget Era
+## ShopHound
 
-Gadget Era is an e-commerce website that uses JAMstack technology. I used strapi headless CMS as backend and Nuxt.js as frontend.
+ShopHound is an e-commerce website that indexes all sorts of goods from many e-commerce websites and lets users to search them.
 
 ### website link:
 
-- [Gadget Era website](https://gadgetera.netlify.app)
+- [Gadget Era website](https://shophound.biz)
 
 <br/>
 
 ### github link:
 
-- [Front end source code](https://github.com/touha98/gadgetera-client)
-- [Strapi admin (Back end) source code](https://github.com/touha98/gadgetera-admin)
+- [Source code](https://github.com/touha98/shophound)
 
 <br/>
 

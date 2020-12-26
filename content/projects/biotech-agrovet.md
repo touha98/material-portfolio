@@ -1,19 +1,19 @@
 ---
-title: Gadget Era
-description: Gadget Era is an e-commerce website that uses JAMstack technology. I used strapi headless CMS as backend and Nuxt.js as frontend
+title: Biotech Agrovet
+description: Biotech Agrovet is an e-commerce website that uses JAMstack technology. I used strapi headless CMS as backend and Nuxt.js as frontend
 cover: /content/gadgetera-cover.jpg
 thumbnail: /content/gadgetera-home.png
-tools: Nuxt.js,Vuetify,Strapi CMS,Vue.js
+tools: Strapi CMS,Vue.js,Quasar Framework
 languages: JavaScript, Node.js
 ---
 
-## Gadget Era
+## Biotech Agrovet
 
-Gadget Era is an e-commerce website that uses JAMstack technology. I used strapi headless CMS as backend and Nuxt.js as frontend.
+Biotech Agrovet is an agrovet pharmaceuticals company in Bangladesh. I built a sales management web app for them.
 
 ### website link:
 
-- [Gadget Era website](https://gadgetera.netlify.app)
+- [Biotech Agrovet website](https://biotech.com.bd)
 
 <br/>
 
@@ -39,7 +39,7 @@ Product of Gadget Era
 
 </div>
 
-<p class="title text-center">Mobile version on gadget Era</p>
+<p class="title text-center">Mobile version on Bi</p>
 <div class=markdown-grid-wrapper>
 <div class="markdown-grid-item">
 

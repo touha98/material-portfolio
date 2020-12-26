@@ -253,7 +253,6 @@ export default {
   mounted() {
     setTimeout(() => {
       this.loading = false
-      window.scrollTo({ top: 1 })
     }, 1300)
   },
   methods: {

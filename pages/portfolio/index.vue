@@ -9,7 +9,11 @@
         md="4"
       >
         <v-card nuxt :to="'portfolio/' + project.slug">
-          <v-img :lazy-src="project.thumbnail" :src="project.thumbnail">
+          <v-img
+            height="280px"
+            :lazy-src="project.thumbnail"
+            :src="project.thumbnail"
+          >
           </v-img>
           <v-card-title>
             {{ project.title }}
